@@ -94,9 +94,10 @@ adapted from example: https://codepen.io/lucasfernandodev/pen/YzQNNXO
   justify-content: center;
 }
 
-.radio_box {
-  flex: 1 1 250; /*  Stretching: */
-  flex: 0 1 250; /*  No stretching: */
+.radio_box,
+radio-box {
+  flex: 1 1 250px; /*  Stretching: */
+  flex: 0 1 250px; /*  No stretching: */
   min-height: 200px;
   margin: 5%;
   min-width: 20%;
@@ -172,9 +173,9 @@ https://codepen.io/folaad/pen/YvmRpz */
     height: 150px;
     width: 150px;
   }
-  .radio_box {
-    flex: 1 1 200; /*  Stretching: */
-    flex: 0 1 200; /*  No stretching: */
+  .radio_box, radio-box {
+    flex: 1 1 200px; /*  Stretching: */
+    flex: 0 1 200px; /*  No stretching: */
     min-height: 150px;
     margin: 5%;
     min-width: 20%;

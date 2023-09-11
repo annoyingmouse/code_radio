@@ -23,15 +23,6 @@
             color: var(--text-color);
             transition: 0.3s;
           }
-          .radio_box {
-            flex: 1 1 250; /*  Stretching: */
-            flex: 0 1 250; /*  No stretching: */
-            min-height: 200px;
-            margin: 5%;
-            min-width: 20%;
-            text-align: center;
-          }
-
 
           /* button examples:
           https://codepen.io/kentaro_au/pen/MWEqgZO
@@ -92,15 +83,16 @@
               width: 150px;
             }
             .radio_box {
-              flex: 1 1 200; /*  Stretching: */
-              flex: 0 1 200; /*  No stretching: */
+              flex-grow: 1;
+              flex-shrink: 1;
+              flex-basis: 200px;
               min-height: 150px;
               margin: 5%;
               min-width: 20%;
               text-align: center;
             }
           }
-        </style>open
+        </style>
         <div class="radio_box">
           <button id="${'id'}"
                   data-playing="${'playing'}">${'label'}</button>
@@ -114,11 +106,6 @@
           <radio-box id="btn-classic"
                      playing="false"
                      label="Classic"></radio-box>
-<!--          <div class="radio_box">-->
-<!--            <button class="bn30"-->
-<!--                    id="btn-classic"-->
-<!--                    data-playing="false">Classic</button>-->
-<!--          </div>-->
           <div class="radio_box">
             <button class="bn30"
                     id="btn-ambient"
