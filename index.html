@@ -5,20 +5,120 @@
     <meta name="description" content="Free streaming radio for programmers">
     <meta name="keywords" content="Web3 tutorial application">
     <link rel="stylesheet" href="./css/radio.css">
+    <script src="https://unpkg.com/tram-lite@3"></script>
     <div class="context btn-toggle">
       <input type="checkbox">
     </div>
   </head>
   <body>
+    <template is="component-definition">
+      <radio-box>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+          body, button:after {
+            background: var(--bkg-color);
+            transition: 0.3s;
+          }
+          button {
+            color: var(--text-color);
+            transition: 0.3s;
+          }
+          .radio_box {
+            flex: 1 1 250; /*  Stretching: */
+            flex: 0 1 250; /*  No stretching: */
+            min-height: 200px;
+            margin: 5%;
+            min-width: 20%;
+            text-align: center;
+          }
+
+
+          /* button examples:
+          https://codepen.io/kentaro_au/pen/MWEqgZO
+          https://codepen.io/folaad/pen/YvmRpz */
+
+          button {
+            border: 5em;
+            cursor: pointer;
+            outline: none;
+            font-size: 18px;
+            transform: translate(0);
+            background-image: linear-gradient(45deg, #428fbb, #dba4dd);
+            padding: 0.7em 2em;
+            box-shadow: 2px 2px 20px rgba(55, 55, 225, 0.438);
+            -webkit-transition: box-shadow 0.25s;
+            transition: box-shadow 0.25s;
+            border-radius: var(--button-border-radius);
+            height: 175px;
+            width: 175px;
+          }
+
+          button .text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(45deg, #428fbb, #b06ab3);
+          }
+
+          button:after {
+            content: "";
+            border-radius: var(--button-border-radius);
+            position: absolute;
+            margin: 2px;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+          }
+
+          button:hover {
+            background-image: linear-gradient(-45deg, #428fbb, #dba4dd);
+            box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
+          }
+
+          button:hover .text {
+            background-image: linear-gradient(-45deg, #428fbb, #dba4dd);
+          }
+
+          button[data-playing="true"] {
+            background-image: linear-gradient(45deg, #e9eb71, #dba4dd);
+            color: #f1c40f;
+          }
+
+          @media screen and (max-width: 531px) {
+            button {
+              height: 150px;
+              width: 150px;
+            }
+            .radio_box {
+              flex: 1 1 200; /*  Stretching: */
+              flex: 0 1 200; /*  No stretching: */
+              min-height: 150px;
+              margin: 5%;
+              min-width: 20%;
+              text-align: center;
+            }
+          }
+        </style>
+        <div class="radio_box">
+          <button id="${'id'}"
+                  data-playing="${'playing'}">${'label'}</button>
+        </div>
+      </radio-box>
+    </template>
     <div class="radio_main">
       <div class="radio_text">
         <h1>Choose Your <span class="radio_header">Vibe</span></h1>
         <div class="radio_parent">
-          <div class="radio_box">
-            <button class="bn30"
-                    id="btn-classic"
-                    data-playing="false">Classic</button>
-          </div>
+          <radio-box id="btn-classic"
+                     playing="false"
+                     label="Classic"></radio-box>
+<!--          <div class="radio_box">-->
+<!--            <button class="bn30"-->
+<!--                    id="btn-classic"-->
+<!--                    data-playing="false">Classic</button>-->
+<!--          </div>-->
           <div class="radio_box">
             <button class="bn30"
                     id="btn-ambient"
@@ -31,6 +131,13 @@
           </div>
         </div>
         <br>
+        <div>
+          <input type="checkbox"
+                 id="square"
+                 name="square" />
+          <label for="square">Square</label>
+        </div>
+        <br>
         <p>Code Radio is a decentralized demo application for the book Web3 Application Architecture <br><br>
           (Steven Platt, Manning Publishing 2023)</p>
       </div>
@@ -38,5 +145,6 @@
     <script src="./js/radio.js"></script>
     <script src="./js/indexedDB.js"></script>
     <script src="./js/darkmode.js"></script>
+    <script src="./js/squareOrRound.js"></script>
   </body>
 </html>

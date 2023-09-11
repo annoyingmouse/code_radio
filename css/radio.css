@@ -6,6 +6,7 @@ body {
   font-family: "Lato", sans-serif;
   --text-color: #575a5e;
   --bkg-color: #fff;
+  --button-border-radius: 70%;
   margin: 0;
 }
 
@@ -13,14 +14,22 @@ body.dark-theme {
   --text-color: #eee;
   --bkg-color: #35383d;
   background-image: url("../media/pattern001.png");
+  background-attachment: fixed;
+  background-position: center;
 }
+
+body.square-buttons {
+  --button-border-radius: 0;
+}
+
+
 
 body, .bn30:after {
   background: var(--bkg-color);
   transition: 0.3s;
 }
 
-h1, p, button {
+h1, p, button, label, input {
   color: var(--text-color);
   transition: 0.3s;
 }
@@ -114,15 +123,13 @@ https://codepen.io/folaad/pen/YvmRpz */
   cursor: pointer;
   outline: none;
   font-size: 18px;
-  -webkit-transform: translate(0);
   transform: translate(0);
   background-image: linear-gradient(45deg, #428fbb, #dba4dd);
   padding: 0.7em 2em;
-  border-radius: 65px;
   box-shadow: 2px 2px 20px rgba(55, 55, 225, 0.438);
   -webkit-transition: box-shadow 0.25s;
   transition: box-shadow 0.25s;
-  border-radius: 70%;
+  border-radius: var(--button-border-radius);
   height: 175px;
   width: 175px;
 }
@@ -136,7 +143,7 @@ https://codepen.io/folaad/pen/YvmRpz */
 
 .bn30:after {
   content: "";
-  border-radius: 70%;
+  border-radius: var(--button-border-radius);
   position: absolute;
   margin: 2px;
   top: 0;

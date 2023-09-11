@@ -10,7 +10,7 @@ const lofi_audio = document.getElementById('btn-lofi')
 
 const database = "music_database"
 const object_store = "music_files"
-
+const audioURL = document.createElement("audio")
 
 function getData(song) {
   // open a read/write db transaction, ready for retrieving the data
@@ -25,9 +25,7 @@ function getData(song) {
   // Make a request to get a record by key from the object store
   objectStoreRequest.onsuccess = (event) => {
     const myRecord = objectStoreRequest.result;
-    console.log(`${myRecord.url}`);
-    const audioURL = document.createElement("audio");
-    audioURL.src = myRecord.url;
+    audioURL.src = URL.createObjectURL(myRecord.sourceData);
     audioURL.loop = true;
   };
 };
@@ -40,13 +38,14 @@ const reset_radio = stream => {
 
 const play_classic = () => {
   const DBOpenRequest = window.indexedDB.open(database, 1)
-  DBOpenRequest.onsuccess = (event) => {
+  DBOpenRequest.onsuccess = async (event) => {
     db = DBOpenRequest.result;
     // Run the getData() function to get the data from the database
-    getData("trap and ink");
+    await getData("trap and ink");
+    audioURL.pause()
+    audioURL.currentTime = 0
+    audioURL.play()
   }
-  audioURL.pause()
-  audioURL.currentTime = 0
   if (classic_audio.dataset.playing === "false"){
     radioButtons.forEach(radio => {
       radio.dataset.playing = radio.id === classic_audio.id
@@ -66,6 +65,7 @@ const play_ambient = () => {
   audioURL.pause()
   audioURL.currentTime = 0
   if (ambient_audio.dataset.playing === "false"){
+    audioURL.play()
     radioButtons.forEach(radio => {
       radio.dataset.playing = radio.id === ambient_audio.id
     })
@@ -84,6 +84,7 @@ function play_lofi() {
   audioURL.pause()
   audioURL.currentTime = 0
   if (lofi_audio.dataset.playing === "false"){
+    audioURL.play()
     radioButtons.forEach(radio => {
       radio.dataset.playing = radio.id === lofi_audio.id
     })
